@@ -9,12 +9,24 @@
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BlackBytesBox.Retro.UI\BlackBytesBox.Retro.UI.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\BlackBytesBox.Retro.UI\BlackBytesBox.Retro.UI.csproj" />
+	</ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="spinner.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="spinner2.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="x.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

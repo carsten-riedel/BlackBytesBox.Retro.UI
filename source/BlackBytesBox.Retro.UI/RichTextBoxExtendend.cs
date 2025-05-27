@@ -572,7 +572,15 @@ namespace BlackBytesBox.Retro.UI
             // Append buffered lines without changing scroll
             while (_textBuffer.Count > 0)
             {
-                base.Text = base.Text.TrimEnd(Environment.NewLine) + Environment.NewLine + _textBuffer.Dequeue();
+                if (base.Text.Length == 0)
+                {
+                    base.Text = _textBuffer.Dequeue();
+                }
+                else
+                {
+                    base.Text = base.Text.TrimEnd(Environment.NewLine) + Environment.NewLine + _textBuffer.Dequeue();
+                }
+                    
                 //base.AppendText(Environment.NewLine+_textBuffer.Dequeue());
             }
 
