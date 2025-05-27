@@ -1,3 +1,6 @@
+using System;
+using System.Windows.Forms;
+
 using BlackBytesBox.Retro.UI.Interop;
 
 namespace BlackBytesBox.Retro.UI.Test
