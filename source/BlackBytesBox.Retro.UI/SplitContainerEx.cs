@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-
 namespace BlackBytesBox.Retro.UI
 {
     /// <summary>
@@ -95,8 +94,6 @@ namespace BlackBytesBox.Retro.UI
             NotifyContainerWidthChanged();
         }
 
-
-
         /// <summary>
         /// Expands Panel2 to its previous width, restores total control width, and unlocks the splitter.
         /// </summary>
@@ -118,8 +115,6 @@ namespace BlackBytesBox.Retro.UI
 
             NotifyContainerWidthChanged();
         }
-
-
 
         /// <summary>
         /// Expands Panel1 to its previous width, restores total control width, and unlocks the splitter.
@@ -201,168 +196,6 @@ namespace BlackBytesBox.Retro.UI
         }
     }
 
-
-    /// <summary>
-    /// A SplitContainer variant that remembers and restores its size and Panel1/Panel2 width when collapsing/expanding,
-    /// and raises an event whenever its overall width changes.
-    /// </summary>
-    public class SplitContainerExWorks : SplitContainer
-    {
-        private int _origWidth;
-        private int _origSplitterDistance;
-        private bool _isPanel2Collapsed;
-        private bool _isPanel1Collapsed;
-        private bool _suspendUpdate;
-
-        /// <summary>
-        /// Occurs when the overall width of the SplitContainerEx changes.
-        /// </summary>
-        public event EventHandler<ContainerWidthChangedEventArgs> ContainerWidthChanged;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SplitContainerEx"/> class.
-        /// </summary>
-        public SplitContainerExWorks()
-        {
-            this.SplitterMoved += OnSplitterMoved;
-            this.HandleCreated += (s, e) =>
-            {
-                _origWidth = this.Width;
-                _origSplitterDistance = this.SplitterDistance;
-            };
-        }
-
-        /// <summary>
-        /// Collapses Panel2 to zero width, shrinks total control width to Panel1 size, and fixes the splitter.
-        /// </summary>
-        public void CollapsePanel2()
-        {
-            if (_isPanel2Collapsed) return;
-            _suspendUpdate = true;
-
-            // Store original dimensions
-            _origWidth = this.Width;
-            _origSplitterDistance = this.SplitterDistance;
-
-            // Collapse panel2 and lock splitter
-            Panel2Collapsed = true;
-            IsSplitterFixed = true;
-
-            // Shrink control to Panel1 width + splitter
-            this.Width = _origSplitterDistance + this.SplitterWidth;
-            _isPanel2Collapsed = true;
-            _suspendUpdate = false;
-        }
-
-        /// <summary>
-        /// Expands Panel2 to its previous width, restores total control width, and unlocks the splitter.
-        /// </summary>
-        public void ExpandPanel2()
-        {
-            if (!_isPanel2Collapsed) return;
-            _suspendUpdate = true;
-
-            // Restore panel2 and splitter
-            Panel2Collapsed = false;
-            IsSplitterFixed = false;
-
-            // Restore sizes
-            this.Width = _origWidth;
-            this.SplitterDistance = _origSplitterDistance;
-
-            _isPanel2Collapsed = false;
-            _suspendUpdate = false;
-        }
-
-        /// <summary>
-        /// Collapses Panel1 to zero width, shrinks total control width to Panel2 size, and fixes the splitter.
-        /// </summary>
-        public void CollapsePanel1()
-        {
-            if (_isPanel1Collapsed) return;
-            _suspendUpdate = true;
-
-            // Store original dimensions
-            _origWidth = this.Width;
-            _origSplitterDistance = this.SplitterDistance;
-
-            // Collapse panel1 and lock splitter
-            Panel1Collapsed = true;
-            IsSplitterFixed = true;
-
-            // Calculate Panel2 width and shrink
-            int panel2Width = _origWidth - _origSplitterDistance - this.SplitterWidth;
-            this.Width = panel2Width + this.SplitterWidth;
-
-            _isPanel1Collapsed = true;
-            _suspendUpdate = false;
-        }
-
-        /// <summary>
-        /// Expands Panel1 to its previous width, restores total control width, and unlocks the splitter.
-        /// </summary>
-        public void ExpandPanel1()
-        {
-            if (!_isPanel1Collapsed) return;
-            _suspendUpdate = true;
-
-            // Restore panel1 and splitter
-            Panel1Collapsed = false;
-            IsSplitterFixed = false;
-
-            // Restore sizes
-            this.Width = _origWidth;
-            this.SplitterDistance = _origSplitterDistance;
-
-            _isPanel1Collapsed = false;
-            _suspendUpdate = false;
-        }
-
-        /// <summary>
-        /// Toggles the collapsed/expanded state of Panel2.
-        /// </summary>
-        public void TogglePanel2()
-        {
-            if (_isPanel2Collapsed) ExpandPanel2();
-            else CollapsePanel2();
-        }
-
-        /// <summary>
-        /// Toggles the collapsed/expanded state of Panel1.
-        /// </summary>
-        public void TogglePanel1()
-        {
-            if (_isPanel1Collapsed) ExpandPanel1();
-            else CollapsePanel1();
-        }
-
-        private void OnSplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (_suspendUpdate || _isPanel2Collapsed || _isPanel1Collapsed) return;
-
-            // Update stored dimensions
-            _origSplitterDistance = this.SplitterDistance;
-            _origWidth = this.Width;
-        }
-
-        /// <summary>
-        /// Overrides OnSizeChanged to update stored dimensions and raise ContainerWidthChanged event.
-        /// </summary>
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            base.OnSizeChanged(e);
-
-            if (!_suspendUpdate && !_isPanel2Collapsed && !_isPanel1Collapsed)
-            {
-                _origWidth = this.Width;
-                _origSplitterDistance = this.SplitterDistance;
-            }
-
-            // Raise event for any size change
-            ContainerWidthChanged?.Invoke(this, new ContainerWidthChangedEventArgs(this.Width));
-        }
-    }
-
     /// <summary>
     /// Provides data for the ContainerWidthChanged event.
     /// </summary>
@@ -382,5 +215,4 @@ namespace BlackBytesBox.Retro.UI
             NewWidth = newWidth;
         }
     }
-
 }

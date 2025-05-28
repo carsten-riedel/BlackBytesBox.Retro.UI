@@ -62,14 +62,12 @@ namespace BlackBytesBox.Retro.UI
 
         public PlaceholderTextBox()
         {
-           
             this.Click += (s, e) => Invalidate();
             this.MouseMove += (s, e) => { if (e.Button != MouseButtons.None) Invalidate(); };
             this.MouseDown += (s, e) => Invalidate();
             //this.KeyDown += (s, e) => { if (this.Text == string.Empty) { Invalidate(); } };
             this.PreviewKeyDown += (s, e) => { Invalidate(); };
         }
-
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
@@ -102,13 +100,10 @@ namespace BlackBytesBox.Retro.UI
                 using (Graphics g = Graphics.FromHwnd(this.Handle))
                 using (Brush brush = new SolidBrush(Color.Gray))
                 {
-
                     g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
                     g.DrawString(_placeholderText, this.Font, brush, new PointF(0f, 1f));
                 }
             }
         }
     }
-
-
 }

@@ -34,6 +34,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.placeholderTextBox2 = new BlackBytesBox.Retro.UI.PlaceholderTextBox();
             this.cmdHostControl1 = new BlackBytesBox.Retro.UI.CmdHostControl();
             this.splitContainerEx1 = new BlackBytesBox.Retro.UI.SplitContainerEx();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -42,7 +43,6 @@
             this.verticalLabel1 = new BlackBytesBox.Retro.UI.VerticalLabel();
             this.gifSpinner1 = new BlackBytesBox.Retro.UI.GifSpinner();
             this.placeholderTextBox1 = new BlackBytesBox.Retro.UI.PlaceholderTextBox();
-            this.placeholderTextBox2 = new BlackBytesBox.Retro.UI.PlaceholderTextBox();
             this.panel1.SuspendLayout();
             this.splitContainerEx1.Panel1.SuspendLayout();
             this.splitContainerEx1.Panel2.SuspendLayout();
@@ -93,6 +93,15 @@
             this.button1.Text = "reset";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // placeholderTextBox2
+            // 
+            this.placeholderTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.placeholderTextBox2.Location = new System.Drawing.Point(40, 364);
+            this.placeholderTextBox2.Name = "placeholderTextBox2";
+            this.placeholderTextBox2.PlaceholderText = "Placeholder";
+            this.placeholderTextBox2.Size = new System.Drawing.Size(171, 31);
+            this.placeholderTextBox2.TabIndex = 17;
             // 
             // cmdHostControl1
             // 
@@ -177,15 +186,6 @@
             this.placeholderTextBox1.Size = new System.Drawing.Size(100, 20);
             this.placeholderTextBox1.TabIndex = 0;
             this.placeholderTextBox1.EnterKeyPressed += new System.EventHandler(this.placeholderTextBox1_EnterKeyPressed);
-            // 
-            // placeholderTextBox2
-            // 
-            this.placeholderTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.placeholderTextBox2.Location = new System.Drawing.Point(40, 364);
-            this.placeholderTextBox2.Name = "placeholderTextBox2";
-            this.placeholderTextBox2.PlaceholderText = "Placeholder";
-            this.placeholderTextBox2.Size = new System.Drawing.Size(171, 31);
-            this.placeholderTextBox2.TabIndex = 17;
             // 
             // Form1
             // 
