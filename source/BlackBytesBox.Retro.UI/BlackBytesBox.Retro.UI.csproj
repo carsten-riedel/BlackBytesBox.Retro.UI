@@ -8,7 +8,7 @@
 	  <Reference Include="System.Windows.Forms" />
 	</ItemGroup>
 
-	<!-- Packaging and publish configuration -->
+	<!-- Packaging and publish configuration  -->
 	<PropertyGroup>
 		<isMsbuild>true</isMsbuild>
 		<isTestProject>false</isTestProject>
