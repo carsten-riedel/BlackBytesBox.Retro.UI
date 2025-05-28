@@ -122,7 +122,7 @@ foreach ($projectFile in $solutionProjectsObj) {
     $isTestProject = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "IsTestProject")
     $isPackable = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "IsPackable")
     $isPublishable = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "IsPublishable")
-    $isMsbuild = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "IsMsbuild")
+    $targetFrameWork = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "TargetFramework")
 
     $outputReportDirectory = New-DirectoryFromSegments -Paths @($outputRootReportResultsDirectory, "$($projectFile.BaseName)" , "$branchVersionFolder")
     $outputArtifactsDirectory = New-DirectoryFromSegments -Paths @($outputRootArtifactsDirectory, "$($projectFile.BaseName)" , "$branchVersionFolder")
@@ -131,9 +131,8 @@ foreach ($projectFile in $solutionProjectsObj) {
     
 
     $commonProjectParameters = @(
-        "--verbosity","minimal",
-        "-p:""Deterministic=true",
-		"-p:""ContinuousIntegrationBuild=true",
+        "-p:""Deterministic=true""",
+		"-p:""ContinuousIntegrationBuild=true""",
 		"-p:""VersionBuild=$($calculatedVersion.VersionBuild)""",
         "-p:""VersionMajor=$($calculatedVersion.VersionMajor)""",
         "-p:""VersionMinor=$($calculatedVersion.VersionMinor)""",
@@ -152,8 +151,10 @@ foreach ($projectFile in $solutionProjectsObj) {
     Invoke-Exec -Executable "dotnet" -Arguments @("clean", """$($projectFile.FullName)""", "-c", "Release","-p:""Stage=clean""")  -CommonArguments $commonProjectParameters -CaptureOutput $false
     Invoke-Exec -Executable "dotnet" -Arguments @("restore", """$($projectFile.FullName)""", "-p:""Stage=restore""")  -CommonArguments $commonProjectParameters -CaptureOutput $false
     
-    if ($isMsbuild) {
+    Write-Output "===> Building project: $($projectFile.FullName) with TargetFramework: $targetFrameWork"
+    if ($targetFrameWork -match '^(net20|net35|net40|net45|net451|net452|net46|net461|net462|net47|net471|net472|net48|net2\.0|net3\.5|net4\.0|net4\.5|net4\.5\.1|net4\.5\.2|net4\.6|net4\.6\.1|net4\.6\.2|net4\.7|net4\.7\.1|net4\.7\.2|net4\.8|net4\.8\.1)$') {
         # Use MSBuild
+        #Invoke-Exec -Executable "dotnet" -Arguments @("msbuild","$($projectFile.FullName)","/t:Build","/p:Configuration=Release;Stage=build") -CommonArguments $commonProjectParameters -CaptureOutput $false
         Invoke-Exec -Executable "msbuild" -Arguments @("$($projectFile.FullName)","/t:Build","/p:Configuration=Release;Stage=build") -CommonArguments $commonProjectParameters -CaptureOutput $false
     } else {
         Invoke-Exec -Executable "dotnet" -Arguments @("build", """$($projectFile.FullName)""", "-c", "Release","-p:""Stage=build""")  -CommonArguments $commonProjectParameters -CaptureOutput $false
