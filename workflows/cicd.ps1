@@ -148,11 +148,11 @@ foreach ($projectFile in $solutionProjectsObj) {
         "-p:""OutputArtifactPublishDirectory=$outputArtifactPublishDirectory"""
     )
 
-    # ---- Convert to MSBuild.exe syntax ----------------------------------------
-    $msbuildProjectParameters = $commonProjectParameters |
-    ForEach-Object {
-        $_ -replace '^-p:"', '/p:'       # change prefix  -p:  → /p:
-        -replace '"$' , ''            # strip the trailing quote
+    # Converted array for full-framework MSBuild.exe
+    $msbuildProjectParameters = $commonProjectParameters | ForEach-Object {
+        # 1) change the leading '-p:"' into '/p:'  
+        # 2) strip off the trailing '"'  
+        ($_ -replace '^-p:"', '/p:') -replace '"$',''
     }
 
     Invoke-Exec -Executable "dotnet" -Arguments @("clean", """$($projectFile.FullName)""", "-c", "Release","-p:""Stage=clean""")  -CommonArguments $commonProjectParameters -CaptureOutput $false
