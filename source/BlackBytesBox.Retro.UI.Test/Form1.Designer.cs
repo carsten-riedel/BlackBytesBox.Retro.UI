@@ -34,6 +34,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.cmdHostControl1 = new BlackBytesBox.Retro.UI.CmdHostControl();
             this.splitContainerEx1 = new BlackBytesBox.Retro.UI.SplitContainerEx();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -41,7 +42,7 @@
             this.verticalLabel1 = new BlackBytesBox.Retro.UI.VerticalLabel();
             this.gifSpinner1 = new BlackBytesBox.Retro.UI.GifSpinner();
             this.placeholderTextBox1 = new BlackBytesBox.Retro.UI.PlaceholderTextBox();
-            this.cmdHostControl1 = new BlackBytesBox.Retro.UI.CmdHostControl();
+            this.placeholderTextBox2 = new BlackBytesBox.Retro.UI.PlaceholderTextBox();
             this.panel1.SuspendLayout();
             this.splitContainerEx1.Panel1.SuspendLayout();
             this.splitContainerEx1.Panel2.SuspendLayout();
@@ -92,6 +93,13 @@
             this.button1.Text = "reset";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cmdHostControl1
+            // 
+            this.cmdHostControl1.Location = new System.Drawing.Point(405, 12);
+            this.cmdHostControl1.Name = "cmdHostControl1";
+            this.cmdHostControl1.Size = new System.Drawing.Size(612, 437);
+            this.cmdHostControl1.TabIndex = 16;
             // 
             // splitContainerEx1
             // 
@@ -170,18 +178,21 @@
             this.placeholderTextBox1.TabIndex = 0;
             this.placeholderTextBox1.EnterKeyPressed += new System.EventHandler(this.placeholderTextBox1_EnterKeyPressed);
             // 
-            // cmdHostControl1
+            // placeholderTextBox2
             // 
-            this.cmdHostControl1.Location = new System.Drawing.Point(405, 12);
-            this.cmdHostControl1.Name = "cmdHostControl1";
-            this.cmdHostControl1.Size = new System.Drawing.Size(612, 437);
-            this.cmdHostControl1.TabIndex = 16;
+            this.placeholderTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.placeholderTextBox2.Location = new System.Drawing.Point(40, 364);
+            this.placeholderTextBox2.Name = "placeholderTextBox2";
+            this.placeholderTextBox2.PlaceholderText = "Placeholder";
+            this.placeholderTextBox2.Size = new System.Drawing.Size(171, 31);
+            this.placeholderTextBox2.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 461);
+            this.Controls.Add(this.placeholderTextBox2);
             this.Controls.Add(this.cmdHostControl1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
@@ -219,5 +230,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
         private CmdHostControl cmdHostControl1;
+        private PlaceholderTextBox placeholderTextBox2;
     }
 }

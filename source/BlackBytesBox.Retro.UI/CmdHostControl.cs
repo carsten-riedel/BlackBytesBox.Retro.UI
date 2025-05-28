@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-using BlackBytesBox.Retro.UI.Interop;
-
 namespace BlackBytesBox.Retro.UI
 {
     /// <summary>

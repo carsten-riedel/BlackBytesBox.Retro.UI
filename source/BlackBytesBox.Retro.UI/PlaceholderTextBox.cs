@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace BlackBytesBox.Retro.UI
     public class PlaceholderTextBox : TextBox
     {
         private const int WM_PAINT = 0x000F;
+        private const int WM_ERASEBKGND = 0x0014;
 
         private string _placeholderText = "";
         private bool _hideOnFocus = false;
@@ -58,6 +60,17 @@ namespace BlackBytesBox.Retro.UI
             EnterKeyPressed?.Invoke(this, e);
         }
 
+        public PlaceholderTextBox()
+        {
+           
+            this.Click += (s, e) => Invalidate();
+            this.MouseMove += (s, e) => { if (e.Button != MouseButtons.None) Invalidate(); };
+            this.MouseDown += (s, e) => Invalidate();
+            //this.KeyDown += (s, e) => { if (this.Text == string.Empty) { Invalidate(); } };
+            this.PreviewKeyDown += (s, e) => { Invalidate(); };
+        }
+
+
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
@@ -71,18 +84,27 @@ namespace BlackBytesBox.Retro.UI
 
         protected override void WndProc(ref Message m)
         {
+            // suppress flicker
+            if (m.Msg == WM_ERASEBKGND)
+            {
+                m.Result = IntPtr.Zero;
+                return;
+            }
+
             base.WndProc(ref m);
 
-            if (m.Msg == WM_PAINT &&
-                string.IsNullOrEmpty(Text) &&
-                !string.IsNullOrEmpty(PlaceholderText) &&
-                (!_hideOnFocus || !Focused))
+            // draw placeholder if needed
+            if (m.Msg == WM_PAINT
+                && string.IsNullOrEmpty(this.Text)
+                && !string.IsNullOrEmpty(_placeholderText)
+                && (!_hideOnFocus || !this.Focused))
             {
-                using (var g = Graphics.FromHwnd(Handle))
-                using (var brush = new SolidBrush(Color.DimGray))
+                using (Graphics g = Graphics.FromHwnd(this.Handle))
+                using (Brush brush = new SolidBrush(Color.Gray))
                 {
+
                     g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
-                    g.DrawString(PlaceholderText, Font, brush, new PointF(-2, 1));
+                    g.DrawString(_placeholderText, this.Font, brush, new PointF(0f, 1f));
                 }
             }
         }

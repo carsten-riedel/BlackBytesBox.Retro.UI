@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-using BlackBytesBox.Retro.UI.Interop;
-
 namespace BlackBytesBox.Retro.UI
 {
     static class Startup
