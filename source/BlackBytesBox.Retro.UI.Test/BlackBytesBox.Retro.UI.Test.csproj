@@ -3,11 +3,20 @@
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net2.0</TargetFramework>
-		<ImplicitUsings>disable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<DebugType>embedded</DebugType>
-		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+	<!-- Packaging and publish configuration -->
+	<PropertyGroup>
+		<isTestProject>true</isTestProject>
+		<isPackable>false</isPackable>
+		<isPublishable>false</isPublishable>
+		<PackAsTool>false</PackAsTool>
+	</PropertyGroup>
+
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BlackBytesBox.Retro.UI\BlackBytesBox.Retro.UI.csproj" />
