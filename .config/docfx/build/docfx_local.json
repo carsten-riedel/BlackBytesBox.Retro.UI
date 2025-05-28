@@ -28,7 +28,7 @@
         ]
       }
     ],
-    "output": "C:/dev/github.com/carsten-riedel/BlackBytesBox.Retro.UI/reports/BlackBytesBox.Retro.UI/main/0.1.20253.2823/docfx",
+    "output": "C:/dev/github.com/carsten-riedel/BlackBytesBox.Retro.UI/reports/BlackBytesBox.Retro.UI/main/0.1.20253.2852/docfx",
     "template": [
       "statictoc",
       "../_exported_templates/override"
