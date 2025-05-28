@@ -122,6 +122,7 @@ foreach ($projectFile in $solutionProjectsObj) {
     $isTestProject = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "IsTestProject")
     $isPackable = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "IsPackable")
     $isPublishable = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "IsPublishable")
+    $isMsbuild = Invoke-Exec -Executable "dotnet" -Arguments @("bbdist", "csproj", "--file", "$($projectFile.FullName)", "--property", "IsMsbuild")
 
     $outputReportDirectory = New-DirectoryFromSegments -Paths @($outputRootReportResultsDirectory, "$($projectFile.BaseName)" , "$branchVersionFolder")
     $outputArtifactsDirectory = New-DirectoryFromSegments -Paths @($outputRootArtifactsDirectory, "$($projectFile.BaseName)" , "$branchVersionFolder")
@@ -150,7 +151,16 @@ foreach ($projectFile in $solutionProjectsObj) {
 
     Invoke-Exec -Executable "dotnet" -Arguments @("clean", """$($projectFile.FullName)""", "-c", "Release","-p:""Stage=clean""")  -CommonArguments $commonProjectParameters -CaptureOutput $false
     Invoke-Exec -Executable "dotnet" -Arguments @("restore", """$($projectFile.FullName)""", "-p:""Stage=restore""")  -CommonArguments $commonProjectParameters -CaptureOutput $false
-    Invoke-Exec -Executable "dotnet" -Arguments @("build", """$($projectFile.FullName)""", "-c", "Release","-p:""Stage=build""")  -CommonArguments $commonProjectParameters -CaptureOutput $false
+    
+    if ($isMsbuild) {
+        # Use MSBuild
+        Invoke-Exec -Executable "msbuild" -Arguments @("$($projectFile.FullName)","/t:Build","/p:Configuration=Release;Stage=build") -CommonArguments $commonProjectParameters -CaptureOutput $false
+    } else {
+        Invoke-Exec -Executable "dotnet" -Arguments @("build", """$($projectFile.FullName)""", "-c", "Release","-p:""Stage=build""")  -CommonArguments $commonProjectParameters -CaptureOutput $false
+    }
+
+    
+    
 
     if (($isPackable -eq $true) -or ($isPublishable -eq $true))
     {
