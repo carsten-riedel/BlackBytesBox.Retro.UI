@@ -10,7 +10,6 @@
 
 	<!-- Packaging and publish configuration  -->
 	<PropertyGroup>
-		<isMsbuild>true</isMsbuild>
 		<isTestProject>false</isTestProject>
 		<isPackable>true</isPackable>
 		<isPublishable>false</isPublishable>
