@@ -1,0 +1,12 @@
+[
+  {
+    "PackageId": "Microsoft.NETFramework.ReferenceAssemblies",
+    "PackageVersion": "1.0.3",
+    "PackageProjectUrl": "https://github.com/Microsoft/dotnet/tree/master/releases/reference-assemblies",
+    "Copyright": "\u00A9 Microsoft Corporation. All rights reserved.",
+    "Authors": "Microsoft",
+    "License": "MIT",
+    "LicenseUrl": "https://github.com/Microsoft/dotnet/blob/master/LICENSE",
+    "LicenseInformationOrigin": 1
+  }
+]

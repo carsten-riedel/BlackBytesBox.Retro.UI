@@ -1,0 +1,161 @@
+{
+  "source_base_path": "D:/a/BlackBytesBox.Retro.UI/BlackBytesBox.Retro.UI/.config/docfx/build",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Retro.UI.CmdHostControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Retro.UI.CmdHostControl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Retro.UI.ContainerWidthChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Retro.UI.ContainerWidthChangedEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Retro.UI.GifSpinner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Retro.UI.GifSpinner.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Retro.UI.PlaceholderTextBox.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Retro.UI.PlaceholderTextBox.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Retro.UI.RichTextBoxExtendend.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Retro.UI.RichTextBoxExtendend.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Retro.UI.SplitContainerEx.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Retro.UI.SplitContainerEx.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Retro.UI.VerticalLabel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Retro.UI.VerticalLabel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BlackBytesBox.Retro.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BlackBytesBox.Retro.UI.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/blackbytes_small.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/blackbytes_small.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
